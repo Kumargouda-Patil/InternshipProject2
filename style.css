@@ -1,0 +1,23 @@
+.formcenter {
+  width: 40%;
+  background-color:rgb(234, 234, 222);
+  border: 1px outset rgb(248, 248, 246);
+  border-radius: 10px;
+  margin: 20px 50px 20px 0;
+  padding: 20px 35px 0 35px;
+}
+
+body {
+  background-image: url("1337500.png");
+  background-repeat: no-repeat;
+  background-size: cover; /* or 'contain' based on your preference */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* ensures the body takes the full height of the viewport */
+  margin: 0; /* removes default body margin */
+}
+
+span {
+  color: red;
+}

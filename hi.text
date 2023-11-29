@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+
+    <!-- My CSS  -->
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Registration Form</title>
+    <style>.formcenter {
+  width: 40%;
+  background-color: white;
+  border: 1px outset white;
+  border-radius: 10px;
+  margin: 20px 50px 20px 0;
+  padding: 20px 35px 0 35px;
+}
+
+body {
+  background-image: url("image.gif");
+  background-repeat: inherit;
+  display: flex;
+  justify-content: center;
+}
+
+span {
+  color: red;
+}</style>
+  </head>
+
+  <body>
+    <div class="container formcenter">
+      <form method="post" name="myform" onsubmit="return validate()">
+        <h1 class="formheading">Register Yourself</h1>
+        <div class="row align-items-center">
+          <div class="col mt-3 mb-3">
+            <input
+              type="text"
+              class="form-control shadow-sm bg-body rounded"
+              placeholder="First name"
+              aria-label="Firstname"
+              aria-describedby="basic-addon1"
+              name="fname"
+              id="fname"
+            />
+            <span id="fn_err" class="error"></span>
+          </div>
+          <div class="col mt-3 mb-3">
+            <input
+              type="text"
+              class="form-control shadow-sm bg-body rounded"
+              placeholder="Last name"
+              aria-label="Lastname"
+              aria-describedby="basic-addon1"
+              name="mname"
+              id="lname"
+            />
+            <span id="ln_err" class="error"></span>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label"
+            >Email Address</label
+          >
+          <input
+            type="email"
+            class="form-control shadow-sm bg-body rounded"
+            id="email"
+            aria-describedby="emailHelp"
+          />
+          <span id="em_err" class="error"></span>
+          <div id="emailHelp" class="form-text">
+            We'll never share your email with anyone else.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label"
+            >Phone Number</label
+          >
+          <input
+            type="text"
+            class="form-control shadow-sm bg-body rounded"
+            id="phone"
+          />
+          <span id="phone_err" class="error"></span>
+        </div>
+
+        <div class="input-group mb-3">
+          <label>Gender: </label>
+          <div class="form-check form-check-inline ms-3">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="inlineRadioOptions"
+              value="Male"
+              checked="checked"
+            />
+            <span></span>
+            <label class="form-check-label" for="inlineRadio1">Male</label>
+          </div>
+          <div class="form-check form-check-inline ms-3">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="inlineRadioOptions"
+              value="Female"
+            />
+            <span></span>
+            <label class="form-check-label" for="inlineRadio2">Female</label>
+          </div>
+          <div class="form-check form-check-inline ms-3">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="inlineRadioOptions"
+              value="Other"
+            />
+            <span></span>
+            <label class="form-check-label" for="inlineRadio2">Other</label>
+            <span id="gn_err" class="error"></span>
+          </div>
+        </div>
+
+        <div class="input-group mb-3">
+          <label
+            class="input-group-text shadow-sm rounded"
+            for="inputGroupSelect01"
+            >Profession</label
+          >
+          <select class="form-select shadow-sm rounded" id="select">
+            <option selected>Choose...</option>
+            <option value="1">Student</option>
+            <option value="2">Teacher</option>
+            <option value="3">Self-Employed</option>
+          </select>
+          <span id="sl_err" class="error"></span>
+        </div>
+
+        <div class="mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="@Username"
+            aria-label="Username"
+            aria-describedby="addon-wrapping"
+            id="uname"
+          />
+          <span class="error"></span>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control shadow-sm rounded"
+            id="pass1"
+          />
+          <span id="p1_err" class="error"></span>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label"
+            >Re-type Password</label
+          >
+          <input
+            type="password"
+            class="form-control shadow-sm rounded"
+            id="pass2"
+          />
+          <span id="p2_err" class="error"></span>
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-3">
+          <button
+            type="submit"
+            class="btn btn-primary me-md-2 shadow-sm rounded"
+            type="button"
+          >
+            Submit
+          </button>
+          <button
+            type="reset"
+            class="btn btn-primary shadow-sm rounded"
+            type="button"
+          >
+            Reset
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+  <script type="text/javascript" src="script.js"></script>
+  <script>const allInputs = document.querySelectorAll("input");
+const phoneInput = document.getElementById("phone");
+const emailInput = document.querySelector("input[type=email]");
+const passwordInput = document.querySelector("input[type=password]");
+const confirmPasswordInput = document.getElementById("pass2");
+const usernameInput = document.getElementById("uname");
+
+allInputs.forEach((input) => {
+  input.addEventListener("blur", (event) => {
+    const errorBoard = event.target.nextElementSibling;
+    validateRequiredField(event.target.value, errorBoard);
+  });
+});
+
+emailInput.addEventListener("blur", (event) => {
+  const errorBoard = event.target.nextElementSibling;
+  validateRequiredField(event.target.value, errorBoard);
+  validateEmail(event.target.value, errorBoard);
+});
+
+phoneInput.addEventListener("blur", (event) => {
+  const errorBoard = event.target.nextElementSibling;
+  validateRequiredField(event.target.value, errorBoard);
+  validatePhoneNumber(event.target.value, errorBoard);
+});
+
+usernameInput.addEventListener("blur", (event) => {
+  const errorBoard = event.target.nextElementSibling;
+  validateRequiredField(event.target.value, errorBoard);
+  validateUsername(event.target.value, errorBoard);
+});
+
+passwordInput.addEventListener("blur", (event) => {
+  const errorBoard = event.target.nextElementSibling;
+  validateRequiredField(event.target.value, errorBoard);
+  validatePassword(event.target.value, errorBoard);
+  validateStrongPassword(event.target.value, errorBoard);
+});
+
+confirmPasswordInput.addEventListener("blur", (event) => {
+  const errorBoard = event.target.nextElementSibling;
+  validateRequiredField(event.target.value, errorBoard);
+  validateMatchingPasswords(passwordInput.value, event.target.value, errorBoard);
+});
+
+function validateRequiredField(value, errorBoard) {
+  if (value.trim() === "") {
+    errorBoard.innerHTML = "This field is required!";
+  } else {
+    errorBoard.innerHTML = "";
+  }
+}
+
+function validateEmail(email, errorBoard) {
+  const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  if (!emailRegex.test(email)) {
+    errorBoard.innerHTML = "Enter a valid email address";
+  } else {
+    errorBoard.innerHTML = "";
+  }
+}
+
+function validatePhoneNumber(phone, errorBoard) {
+  const phoneRegex = /^[0-9]{10}$/;
+  if (!phoneRegex.test(phone)) {
+    errorBoard.innerHTML = "Enter a valid phone number!";
+  } else {
+    errorBoard.innerHTML = "";
+  }
+}
+
+function validateUsername(username, errorBoard) {
+  const usernameRegex = /^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$/;
+  if (!usernameRegex.test(username)) {
+    errorBoard.innerHTML = "Enter a valid username!";
+  } else {
+    errorBoard.innerHTML = "";
+  }
+}
+
+function validatePassword(password, errorBoard) {
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,12}$/;
+  if (!passwordRegex.test(password)) {
+    errorBoard.innerHTML = "Enter a valid password";
+  } else {
+    errorBoard.innerHTML = "";
+  }
+}
+
+function validateStrongPassword(password, errorBoard) {
+  const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+  if (!strongPasswordRegex.test(password)) {
+    errorBoard.innerHTML = "Password should be strong (at least 8 characters, including uppercase, lowercase, number, and special character)";
+  } else {
+    errorBoard.innerHTML = "";
+  }
+}
+
+function validateMatchingPasswords(password1, password2, errorBoard) {
+  if (password1 !== password2) {
+    errorBoard.innerHTML = "Passwords must match";
+  } else {
+    errorBoard.innerHTML = "";
+  }
+}
+
+// The validate function should return true if the form is valid and false otherwise.
+function validate() {
+  const allInputs = document.querySelectorAll("input");
+  let isValid = true;
+
+  allInputs.forEach((input) => {
+    const errorBoard = input.nextElementSibling;
+    const value = input.value.trim();
+
+    // Validate required field
+    validateRequiredField(value, errorBoard);
+
+    // Validate email
+    if (input.type === "email") {
+      validateEmail(value, errorBoard);
+    }
+
+    // Validate phone number
+    if (input.id === "phone") {
+      validatePhoneNumber(value, errorBoard);
+    }
+
+    // Validate username
+    if (input.id === "uname") {
+      validateUsername(value, errorBoard);
+    }
+
+    // Validate password
+    if (input.type === "password") {
+      validatePassword(value, errorBoard);
+      validateStrongPassword(value, errorBoard);
+    }
+  });
+
+  // Validate matching passwords
+  const passwordInput = document.querySelector("input[type=password]");
+  const confirmPasswordInput = document.getElementById("pass2");
+  const passwordMatchErrorBoard = confirmPasswordInput.nextElementSibling;
+  validateMatchingPasswords(passwordInput.value, confirmPasswordInput.value, passwordMatchErrorBoard);
+
+  // Check if any error messages are present
+  const errorMessages = document.querySelectorAll(".error-message");
+  errorMessages.forEach((error) => {
+    if (error.innerHTML !== "") {
+      isValid = false;
+    }
+  });
+
+  return isValid;
+}
+
+
+  </script>
+</html>
